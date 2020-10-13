@@ -5,6 +5,7 @@ const uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 const lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 const numbers = [0,1,2,3,4,5,6,7,8,9]
 const special = [" ", "!", '"', "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ':', ";", "<", ">", "=", "?", "@", "[", "]", "^", "_", "`", "{", "}", "|", "~"]
+
 function generatePassword() {
   var length = prompt("Enter a password length")
   console.log(length)
@@ -20,7 +21,40 @@ function generatePassword() {
   var useSpecial = confirm("Do you want special characters in your password?")
   console.log(useSpecial)
 
+  var validElements = []
+  if (useLowercase) {
+    lowercaseLetters.map(function(e) {
+      validElements.push(e)
+    })
+  }
+  if (useUppercase) {
+    uppercaseLetters.map(function(e) {
+      validElements.push(e)
+    })
+  }
+  if (useSpecial) {
+    special.map(function(e) {
+      validElements.push(e)
+    })
+  }
+  if (useNumbers) {
+    numbers.map(function(e) {
+      validElements.push(e)
+    })
+  }
+  console.log(validElements)
+
+  var passwordArray = []
+
+  for (x=0; x<length; x++) {
+    // ref: https://www.w3resource.com/javascript-exercises/javascript-array-exercise-35.php
+    const randomElement = validElements[Math.floor(Math.random()*validElements.length)]
+    passwordArray.push(randomElement)
+  }
+  const finalPassword = passwordArray.join("")
+  return finalPassword
 }
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
