@@ -1,5 +1,8 @@
 # password-generator
 
+[Live Site](https://laceejansson.github.io/password-generator/.)
+
+
     git clone git@github.com:laceejansson/password-generator.git
 
 
